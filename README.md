@@ -124,3 +124,32 @@ install aws cli + kubectl + eksctl
 </code></pre>
 
 
+**create argocd namespace  and install argocd using manifest**
+<pre><code>
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+</code></pre>
+
+**Access the Argo CD UI (Loadbalancer service)**
+
+<pre><code>
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+</code></pre>
+
+**kubectl get svc argocd-server -n argocd**
+<pre><code>
+kubectl get svc argocd-server -n argocd
+</code></pre>
+
+**run commands for get password of argocd username: admin**
+<pre><code>
+kubectl get secret -n argocd
+kubectl edit secret argocd-initial-admin-secret -n argocd
+</code></pre>
+
+<pre><code>
+echo echocVY3UVNjeWRmdFdUdnZENg==  | base64 --decode
+</code></pre>
+
+now update password by goint to user info in argocd
+
