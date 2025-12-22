@@ -66,3 +66,6 @@ add github credentials
 Go to Manage Jenkins > Credentials(Security) 
 
 Go to your github profile copy username  and create personall access token by setting > Developer Setting > Personall Access Token > Tokens (Classic) 
+
+now create jenkins pipeline and build now if build successfully triggered than now we will push it to dockerhub
+
