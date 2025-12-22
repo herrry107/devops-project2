@@ -48,24 +48,43 @@ now uncomment 2 lines from /etc/ssh/sshd_config
   AuthorizedKeysFile  .ssh/authorized_keys .ssh/authorized_keys2
 </code></pre>
 
-[img]
+![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/uncomment1.png)
+
+add jenkins agent node. Go to Manage > Nodes
+
+![node](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-add-node1.png)
+
+![node](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-add-node2.png)
+
+![node](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-add-node3.png)
+
+![node](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-add-node4.png)
+
+
 
 open some jenkins plugin 
 1) Maven Integrations
 2) Pipeline Maven Integration
 3) Eclipse Termurin installer
 
-[img]
+![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/pluginimage2.png)
+
 
 add maven  and JDK in Jenkins > Tools
 
-[img]
+![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/tools-maven1.png)
+
+![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/tools-jdk1.png)
 
 add github credentials
 
 Go to Manage Jenkins > Credentials(Security) 
 
 Go to your github profile copy username  and create personall access token by setting > Developer Setting > Personall Access Token > Tokens (Classic) 
+
+![github](https://github.com/herrry107/devops-project2/blob/main/images/github-token-img1.png)
+
+![github](https://github.com/herrry107/devops-project2/blob/main/images/credentials-github1.png)
 
 now create jenkins pipeline and build now if build successfully triggered than now we will push it to dockerhub
 
