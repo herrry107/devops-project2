@@ -107,3 +107,13 @@ now Go to dockerhub and create personal access token
 now go to jenkins > Manage > Credentials
 
 ![docker](https://github.com/herrry107/devops-project2/blob/main/images/dockerhub2.png)
+
+# Setup EKS + ArgoCD
+
+install aws cli + kubectl + eksctl
+
+**now create EKS Cluster by eksctl command**
+
+<pre><code>eksctl create cluster --name demo-cluster --region ap-south-1</code></pre>
+
+![eks](https://github.com/herrry107/devops-project2/blob/main/images/eks1.png)
