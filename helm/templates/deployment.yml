@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: register-deployment
+  labels:
+    app: register-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: register-app
+  template:
+    metadata:
+      labels:
+        app: register-app
+    spec:
+      containers:
+        - name: register-app
+          image: herrypr107/register-app-pipeline:{{ .Values.image.tag }}   # your private Docker Hub image
+          ports:
+            - containerPort: 8080

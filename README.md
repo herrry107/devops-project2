@@ -117,3 +117,10 @@ install aws cli + kubectl + eksctl
 <pre><code>eksctl create cluster --name demo-cluster --region ap-south-1</code></pre>
 
 ![eks](https://github.com/herrry107/devops-project2/blob/main/images/eks1.png)
+
+**install ingress on eks**
+
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
+</code></pre>
+
+
