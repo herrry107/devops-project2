@@ -118,6 +118,9 @@ install aws cli + kubectl + eksctl
 
 ![eks](https://github.com/herrry107/devops-project2/blob/main/images/eks1.png)
 
+**When delete Cluster by eksctl command**
+<pre><code>eksctl delete cluster --name devops-project-cluster --region ap-south-1</code></pre>
+
 **install ingress on eks**
 
 <pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
@@ -151,5 +154,20 @@ kubectl edit secret argocd-initial-admin-secret -n argocd
 echo echocVY3UVNjeWRmdFdUdnZENg==  | base64 --decode
 </code></pre>
 
-now update password by goint to user info in argocd
+now update password by goin to user info in argocd
 
+**now  create repository in argocd**
+
+![repository](https://github.com/herrry107/devops-project2/blob/main/images/argocd1-add-repository.png)
+
+**add app in  argocd**
+
+![app](https://github.com/herrry107/devops-project2/blob/main/images/argocd-create-app1.png)
+
+![app](https://github.com/herrry107/devops-project2/blob/main/images/argocd-create-app2.png)
+
+**Now We can see  completely argocd pipeline synced**
+
+![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/argocd2.png)
+
+![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/argocd3.png)
