@@ -88,3 +88,22 @@ Go to your github profile copy username  and create personall access token by se
 
 now create jenkins pipeline and build now if build successfully triggered than now we will push it to dockerhub
 
+we will install more plugins for docker
+1) Docker
+2) Docker Commons
+3) Docker Pipeline
+4) Docker API
+5) docker-build-step
+6) CloudBees Docker Build and Publish
+
+![docker](https://github.com/herrry107/devops-project2/blob/main/images/docker-plugin1.png)
+
+![docker](https://github.com/herrry107/devops-project2/blob/main/images/docker-plugin2.png)
+
+now Go to dockerhub and create personal access token
+
+![docker](https://github.com/herrry107/devops-project2/blob/main/images/dockerhub1.png)
+
+now go to jenkins > Manage > Credentials
+
+![docker](https://github.com/herrry107/devops-project2/blob/main/images/dockerhub2.png)
