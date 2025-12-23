@@ -83,5 +83,39 @@ pipeline {
         sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true"
       }
     }
+
+    stage("Update Helm Image Tag & Push") {
+      when {
+        expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+      }
+      steps {
+        script {
+          def newTag = "${IMAGE_TAG}"
+
+      sh """
+        echo "Updating helm/values.yaml with image tag: ${newTag}"
+
+        sed -i 's|tag:.*|tag: "${newTag}"|' helm/values.yaml
+
+        git config user.name "jenkins-bot"
+        git config user.email "jenkins@local"
+
+        git add helm/values.yaml
+        git commit -m "Update image tag to ${newTag} [ci skip]"
+      """
+
+      withCredentials([usernamePassword(
+        credentialsId: 'github',
+        usernameVariable: 'GIT_USER',
+        passwordVariable: 'GIT_TOKEN'
+      )]) {
+        sh """
+          git push https://${GIT_USER}:${GIT_TOKEN}@github.com/herrry107/devops-project2.git HEAD:main
+        """
+      }
+    }
+  }
+}
+
   }
 }
