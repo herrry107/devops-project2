@@ -185,3 +185,4 @@ now update password by goin to user info in argocd
 
 ![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/website1.png)
 
+![jenkins-pipeline-complete](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-pipeline-complete.png)
