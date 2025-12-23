@@ -108,6 +108,13 @@ now go to jenkins > Manage > Credentials
 
 ![docker](https://github.com/herrry107/devops-project2/blob/main/images/dockerhub2.png)
 
+**setup github webhook for  continuous integration when any change detect in github repo**
+
+add jenkins url
+<pre><code>http://35.154.167.154:8080/github-webhook/</code></pre>
+
+![github-webhook](https://github.com/herrry107/devops-project2/blob/main/images/github-webhook1.png)
+
 # Setup EKS + ArgoCD
 
 install aws cli + kubectl + eksctl
@@ -173,3 +180,4 @@ now update password by goin to user info in argocd
 ![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/argocd3.png)
 
 ![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/website1.png)
+
