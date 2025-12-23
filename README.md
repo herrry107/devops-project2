@@ -1,4 +1,24 @@
-# devops-project2
+# 🚀 DevOps Project 2  
+## Jenkins CI/CD Pipeline with Docker, AWS EKS & Argo CD
+
+This project demonstrates a **complete end-to-end DevOps CI/CD pipeline** using modern DevOps tools and GitOps practices.
+
+---
+
+## 📌 Project Highlights
+
+- Jenkins **Master–Agent architecture**
+- GitHub **Webhook-based CI**
+- Docker image build & push to **Docker Hub**
+- Kubernetes deployment on **AWS EKS**
+- GitOps-based delivery using **Argo CD**
+
+---
+
+## 🧱 Architecture Flow
+
+**GitHub → Jenkins → Docker Hub → AWS EKS → Argo CD → Application**
+
 Jenkins Project with Kubernetes Integration
 
 # Setup Jenkins Master & Agent
@@ -10,15 +30,15 @@ apt update
 apt upgrade
 </code></pre>
 
-Install Jenkins on both System by [official jenkins page](https://www.jenkins.io/doc/book/installing/) or follow below commands
-
-install Java first
+### 1️⃣ Install Java (Required for Jenkins)
 
 <pre><code>
 sudo apt update
 sudo apt install fontconfig openjdk-21-jre
 java -version
 </code></pre>
+
+### 2️⃣ Install Jenkins on both System by [official jenkins page](https://www.jenkins.io/doc/book/installing/) or follow below commands
 
 <pre><code>
   sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
@@ -30,19 +50,33 @@ sudo apt update
 sudo apt install jenkins
 </code></pre>
 
+Enable and start Jenkins:
+
 <pre><code>
   systemctl enable jenkins
   systemctl start jenkins
 </code></pre>
 
-allow port 8080 in incoming in aws security group
+👉 Allow port 8080 in AWS Security Group
 
-now add ssh-key, run command on master node
+🔐 Step 2: Configure SSH Between Master & Agent
+
+Generate SSH Key on Master
+
 <pre><code>ssh-keygen</code></pre>
+
+Copy Public Key
+
+1) Copy ~/.ssh/id_rsa.pub from Master
+2) Paste into Agent file:
 
 copy /.ssh/id_rsa.pub key data from Jenkins-Master and paste into Jenkins-Agent /.ssh/authorized_keys
 
-now uncomment 2 lines from /etc/ssh/sshd_config
+Update SSH Configuration on Agent
+<pre><code>vi /etc/ssh/sshd_config</code></pre>
+
+Uncomment these lines:
+
 <pre><code>
   PublickeyAuthentication yes
   AuthorizedKeysFile  .ssh/authorized_keys .ssh/authorized_keys2
@@ -50,7 +84,7 @@ now uncomment 2 lines from /etc/ssh/sshd_config
 
 ![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/uncomment1.png)
 
-add jenkins agent node. Go to Manage > Nodes
+🖥️ Step 3: Add Jenkins Agent Node. Go to Manage > Nodes
 
 ![node](https://github.com/herrry107/devops-project2/blob/main/images/jenkins-add-node1.png)
 
@@ -62,13 +96,14 @@ add jenkins agent node. Go to Manage > Nodes
 
 
 
-open some jenkins plugin 
+🔌 Step 4: Install Required Jenkins Plugins
 1) Maven Integrations
 2) Pipeline Maven Integration
 3) Eclipse Termurin installer
 
 ![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/pluginimage2.png)
 
+⚙️ Step 5: Configure Jenkins Tools
 
 add maven  and JDK in Jenkins > Tools
 
@@ -76,11 +111,14 @@ add maven  and JDK in Jenkins > Tools
 
 ![uncomment](https://github.com/herrry107/devops-project2/blob/main/images/tools-jdk1.png)
 
-add github credentials
+🔑 Step 6: Add GitHub Credentials
+
+Go to GitHub → Settings → Developer Settings
+
+Create Personal Access Token (Classic)
 
 Go to Manage Jenkins > Credentials(Security) 
 
-Go to your github profile copy username  and create personall access token by setting > Developer Setting > Personall Access Token > Tokens (Classic) 
 
 ![github](https://github.com/herrry107/devops-project2/blob/main/images/github-token-img1.png)
 
@@ -88,7 +126,8 @@ Go to your github profile copy username  and create personall access token by se
 
 now create jenkins pipeline and build now if build successfully triggered than now we will push it to dockerhub
 
-we will install more plugins for docker
+🐳 Step 7: Docker Integration, install more plugins for docker
+
 1) Docker
 2) Docker Commons
 3) Docker Pipeline
@@ -108,9 +147,9 @@ now go to jenkins > Manage > Credentials
 
 ![docker](https://github.com/herrry107/devops-project2/blob/main/images/dockerhub2.png)
 
-**setup github webhook for  continuous integration when any change detect in github repo**
+🔁 Step 8: GitHub Webhook Setup (CI)
 
-add jenkins url
+Add webhook in GitHub repository:
 <pre><code>http://35.154.167.154:8080/github-webhook/</code></pre>
 
 ![github-webhook](https://github.com/herrry107/devops-project2/blob/main/images/github-webhook1.png)
@@ -119,7 +158,7 @@ add jenkins url
 
 ensure to check  
 
-# Setup EKS + ArgoCD
+☸️ Step 9: AWS EKS Setup + ArgoCD
 
 install aws cli + kubectl + eksctl
 
@@ -132,19 +171,19 @@ install aws cli + kubectl + eksctl
 **When delete Cluster by eksctl command**
 <pre><code>eksctl delete cluster --name devops-project-cluster --region ap-south-1</code></pre>
 
-**install ingress on eks**
+🌐 Step 10: Install NGINX Ingress Controller
 
 <pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
 </code></pre>
 
 
-**create argocd namespace  and install argocd using manifest**
+🚦 Step 11: Install Argo CD
 <pre><code>
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 </code></pre>
 
-**Access the Argo CD UI (Loadbalancer service)**
+Expose Argo CD UI
 
 <pre><code>
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
@@ -155,17 +194,20 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 kubectl get svc argocd-server -n argocd
 </code></pre>
 
-**run commands for get password of argocd username: admin**
+Get Argo CD admin Password
+
 <pre><code>
 kubectl get secret -n argocd
 kubectl edit secret argocd-initial-admin-secret -n argocd
 </code></pre>
 
 <pre><code>
-echo echocVY3UVNjeWRmdFdUdnZENg==  | base64 --decode
+echo <BASE64_PASSWORD> | base64 --decode
 </code></pre>
 
 now update password by goin to user info in argocd
+
+📦 Step 12: Argo CD Application Setup
 
 **now  create repository in argocd**
 
