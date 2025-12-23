@@ -19,6 +19,8 @@ This project demonstrates a **complete end-to-end DevOps CI/CD pipeline** using 
 
 **GitHub → Jenkins → Docker Hub → AWS EKS → Argo CD → Application**
 
+![thumbnail](https://github.com/herrry107/devops-project2/blob/main/images/thumbnail.png)
+
 Jenkins Project with Kubernetes Integration
 
 # Setup Jenkins Master & Agent
