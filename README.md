@@ -171,3 +171,5 @@ now update password by goin to user info in argocd
 ![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/argocd2.png)
 
 ![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/argocd3.png)
+
+![argocd-status](https://github.com/herrry107/devops-project2/blob/main/images/website1.png)
