@@ -115,6 +115,10 @@ add jenkins url
 
 ![github-webhook](https://github.com/herrry107/devops-project2/blob/main/images/github-webhook1.png)
 
+![github-webhook](https://github.com/herrry107/devops-project2/blob/main/images/github-webhook2.png)
+
+ensure to check  
+
 # Setup EKS + ArgoCD
 
 install aws cli + kubectl + eksctl
